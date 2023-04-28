@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
 
-public class FMasterBarang {
+public class FormBarang {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Kodam Kopi");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -22,26 +22,75 @@ public class FMasterBarang {
         frame.setLayout(new BorderLayout());
 
         // panel utama
-        JPanel mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel(new GridBagLayout());
         mainPanel.setBackground(Color.WHITE);
         frame.add(mainPanel, BorderLayout.CENTER);
         GridBagConstraints gb = new GridBagConstraints();
         gb.insets = new Insets(10, 10, 10, 10);
         
-        JLabel namaBarang = new JLabel("Nama Barang");
-        gb.gridx = 9;
-        gb.gridy = 8;
+        // label
+        JLabel namaBarang = new JLabel("Nama Barang", SwingConstants.CENTER);
+        gb.gridx = 1;
+        gb.gridy = 2;
         mainPanel.add(namaBarang, gb);
+        
+        JLabel satuanBarang = new JLabel("Satuan", SwingConstants.CENTER);
+        gb.gridx = 1;
+        gb.gridy = 5;
+        mainPanel.add(satuanBarang, gb);
+        
+        JLabel supBarang = new JLabel("Supplier", SwingConstants.CENTER);
+        gb.gridx = 1;
+        gb.gridy = 8;
+        mainPanel.add(supBarang, gb);
         
         // texfield
         JTextField nBarang = new JTextField();
-        mainPanel.add(nBarang);
+        nBarang.setName("TxtNamaBarang");
+        nBarang.setPreferredSize(new Dimension(300, 20));
+        gb.gridx = 4;
+        gb.gridy = 2;
+        mainPanel.add(nBarang, gb);
+        
+        JTextField sBarang = new JTextField();
+        sBarang.setName("TxtSatuan");
+        sBarang.setPreferredSize(new Dimension(300, 20));
+        gb.gridx = 4;
+        gb.gridy = 5;
+        mainPanel.add(sBarang, gb);
+        
+        JTextField spBarang = new JTextField();
+        spBarang.setName("TxtSatuan");
+        spBarang.setPreferredSize(new Dimension(300, 20));
+        gb.gridx = 4;
+        gb.gridy = 8;
+        mainPanel.add(spBarang, gb);
+        
+//        JTextField satuan = new JTextField();        
+//        mainPanel.add(satuan);
         
         // button
         JButton insertBtn = new JButton("INSERT");
-        gb.gridx = 5;
+        gb.gridx = 10;
+        gb.gridy = 2;
+        mainPanel.add(insertBtn, gb);
+        
+        JButton updateBtn = new JButton("UPDATE");
+        gb.gridx = 10;
         gb.gridy = 5;
-        mainPanel.add(insertBtn);
+        mainPanel.add(updateBtn, gb);
+        
+//        // table
+//        String[] columnNames = {"Name", "Age", "Gender"};
+//        Object[][] data = {
+//            {"John", 25, "Male"},
+//            {"Jane", 30, "Female"},
+//            {"Bob", 45, "Male"},
+//        };
+//        JTable table = new JTable(data, columnNames);
+//        gb.gridx = 1;
+//        gb.gridy = 10;
+//        mainPanel.add(table, gb);
 
         // side panel
         JPanel sidePanel = new JPanel();

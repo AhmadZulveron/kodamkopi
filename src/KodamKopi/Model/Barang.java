@@ -8,10 +8,16 @@ package KodamKopi.Model;
  *
  * @author CHAD
  */
-public class MasterBarang {
+public class Barang {
     private String namaBarang;
     private String satuan;
     private int jumlahStok;
+
+    public Barang(String namaBarang, String satuan, int jumlahStok) {
+        this.namaBarang = namaBarang;
+        this.satuan = satuan;
+        this.jumlahStok = jumlahStok;
+    }
 
     public String getNamaBarang() {
         return namaBarang;

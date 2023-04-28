@@ -4,7 +4,7 @@
  */
 package KodamKopi.Dao;
 
-import KodamKopi.Model.MasterBarang;
+import KodamKopi.Model.Barang;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,8 +15,8 @@ import java.sql.SQLException;
  *
  * @author CHAD
  */
-public class DMasterBarang {
-    public void insert(Connection con, MasterBarang masterbarang) throws SQLException{
+public class BarangDao {
+    public void insert(Connection con, Barang masterbarang) throws SQLException{
         String sql = "Insert into barang values (?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, masterbarang.getNamaBarang());
@@ -25,7 +25,7 @@ public class DMasterBarang {
         ps.executeUpdate();
     }
     
-    public void  update(Connection con, MasterBarang masterBarang) throws SQLException{
+    public void  update(Connection con, Barang masterBarang) throws SQLException{
         String sql = "Update barang set nama_barang=?, satuan=?, jumlah_stok=? where nama_barang=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, masterBarang.getNamaBarang());
@@ -34,7 +34,7 @@ public class DMasterBarang {
         ps.executeUpdate();
     }
     
-    public void delete(Connection con, MasterBarang masterBarang) throws SQLException{
+    public void delete(Connection con, Barang masterBarang) throws SQLException{
         String sql = "delete from barang where nama_barang=?";
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, masterBarang.getNamaBarang());
