@@ -30,7 +30,7 @@ public class BarangController {
     
     public void clearForm(){
         view.gett
-    
+    }
     public void insert(){
         model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText());
         dao = new BarangDao();
