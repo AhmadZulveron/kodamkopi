@@ -4,9 +4,9 @@
  */
 package KodamKopi.Controller;
 
-import KodamKopi.View.FMasterBarang;
-import KodamKopi.Dao.DMasterBarang;
-import KodamKopi.Model.MasterBarang;
+import KodamKopi.View.FormBarang;
+import KodamKopi.Dao.BarangDao;
+import KodamKopi.Model.Barang;
 import KodamKopi.Koneksi.Koneksi;
 
 import java.sql.SQLException;
@@ -16,30 +16,24 @@ import javax.swing.JOptionPane;
  *
  * @author CHAD
  */
-public class CMasterBarang {
-    public class BukuController {
-    FMasterBarang view;
-    MasterBarang model;
-    DMasterBarang dao;
+public class BarangController {
+    public class barang {
+    FormBarang view;
+    Barang model;
+    BarangDao dao;
     Koneksi k;
     
-    public  BukuController(FMasterBarang view){
+    public  barang (FormBarang view){
         this.view = view;
         clearForm();
     }
     
     public void clearForm(){
-        view.getTxtKodeBuku().setText("");
-        view.getTxtJudul().setText("");
-        view.getTxtPengarang().setText("");
-        view.getTxtPenerbit().setText("");
-        view.getTxtThTerbit().setText("");
-    }
+        view.gett
     
     public void insert(){
-        model = new Buku(view.getTxtKodeBuku().getText(), view.getTxtJudul().getText(), view.getTxtPengarang().getText(),
-                            view.getTxtPenerbit().getText(), view.getTxtThTerbit().getText());
-        dao = new BukuDao();
+        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText());
+        dao = new BarangDao();
         k = new Koneksi();
         try {
             dao.insert(k.getKoneksi(), model);
@@ -52,9 +46,8 @@ public class CMasterBarang {
     }
     
     public void delete(){
-        model = new Buku(view.getTxtKodeBuku().getText(), view.getTxtJudul().getText(), view.getTxtPengarang().getText(),
-                            view.getTxtPenerbit().getText(), view.getTxtThTerbit().getText());
-        dao = new BukuDao();
+        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText());
+        dao = new BarangDao();
         k = new Koneksi();
         try {
             dao.delete(k.getKoneksi(), model);
@@ -67,9 +60,7 @@ public class CMasterBarang {
     }
     
     public void update(){
-        model = new Buku(view.getTxtKodeBuku().getText(), view.getTxtJudul().getText(), view.getTxtPengarang().getText(),
-                            view.getTxtPenerbit().getText(), view.getTxtThTerbit().getText());
-        dao = new BukuDao();
+        model = new Barang(namaBarang, satuan, 0);
         k = new Koneksi();
         try {
             dao.update(k.getKoneksi(), model);
@@ -81,3 +72,4 @@ public class CMasterBarang {
         }
     }
     }
+}
