@@ -4,10 +4,10 @@
  */
 package KodamKopi.Controller;
 
-import KodamKopi.View.FormBarang;
 import KodamKopi.Dao.BarangDao;
 import KodamKopi.Model.Barang;
 import KodamKopi.Koneksi.Koneksi;
+import KodamKopi.View.BarangView;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -18,21 +18,25 @@ import javax.swing.JOptionPane;
  */
 public class BarangController {
     public class barang {
-    FormBarang view;
+    BarangView view;
     Barang model;
     BarangDao dao;
     Koneksi k;
     
-    public  barang (FormBarang view){
+    public  barang (BarangView view){
         this.view = view;
         clearForm();
     }
     
     public void clearForm(){
-        view.gett
+        view.getTxtNamaBarang();
+        view.getTxtSatuan();
+        view.getTxtJumlah();
+        view.getTxtTglmasuk();
     }
     public void insert(){
-        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText());
+        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText(),
+                           view.getTxtTglmasuk().getText());
         dao = new BarangDao();
         k = new Koneksi();
         try {
@@ -46,7 +50,8 @@ public class BarangController {
     }
     
     public void delete(){
-        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText());
+        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText(),
+                           view.getTxtTglmasuk().getText());
         dao = new BarangDao();
         k = new Koneksi();
         try {
@@ -60,7 +65,8 @@ public class BarangController {
     }
     
     public void update(){
-        model = new Barang(namaBarang, satuan, 0);
+        model = new Barang(view.getTxtNamaBarang().getText(), view.getTxtSatuan().getText(), view.getTxtJumlah().getText(),
+                           view.getTxtTglmasuk().getText());
         k = new Koneksi();
         try {
             dao.update(k.getKoneksi(), model);
