@@ -5,22 +5,33 @@
 package KodamKopi.View;
 
 import KodamKopi.Controller.BarangController;
+import KodamKopi.Koneksi.Koneksi;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author CHAD
  */
 public class FormBarang extends javax.swing.JFrame {
+    
+    public Statement st;
+    public ResultSet rs;
 
-    /**
-     * Creates new form FormBarang
-     */
     BarangController controller;
     public FormBarang() {
         initComponents();
         controller = new BarangController();
+    }
+    
+    private void Bersih(){
+        TxtNamaBarang.setText("");
+        TxtSatuan.setText("");
+        TxtJumlah.setText("");
+        TxtTglmasuk.setText("");
     }
 
     public JTextField getTxtJumlah() {
@@ -265,7 +276,13 @@ public class FormBarang extends javax.swing.JFrame {
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
-        controller.insert();
+        if (TxtNamaBarang.getText().equals("") || 
+                TxtSatuan.getText().equals("") ||
+                TxtJumlah.getText().equals("") ||
+                TxtTglmasuk.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Data tidak boleh kosong", "Validasi data", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
     }//GEN-LAST:event_btnInsertActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
