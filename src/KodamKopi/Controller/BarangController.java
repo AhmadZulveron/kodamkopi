@@ -7,7 +7,7 @@ package KodamKopi.Controller;
 import KodamKopi.Dao.BarangDao;
 import KodamKopi.Model.Barang;
 import KodamKopi.Koneksi.Koneksi;
-import KodamKopi.View.BarangView;
+import KodamKopi.View.FormBarang;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -18,12 +18,12 @@ import javax.swing.JOptionPane;
  */
 public class BarangController {
     public class barang {
-    BarangView view;
+    FormBarang view;
     Barang model;
     BarangDao dao;
     Koneksi k;
     
-    public  barang (BarangView view){
+    public  barang (FormBarang view){
         this.view = view;
         clearForm();
     }
