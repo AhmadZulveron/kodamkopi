@@ -4,17 +4,36 @@
  */
 package KodamKopi.View;
 
+import java.sql.*;
+import javax.swing.*;
+import KodamKopi.Koneksi.Koneksi;
+
+
 /**
  *
  * @author CHAD
  */
 public class FormLogin extends javax.swing.JFrame {
-
+//    Connection con = KodamKopi.Koneksi.Koneksi.getKoneksi();
+    ResultSet rs = null;
+    PreparedStatement ps = null;
     /**
      * Creates new form FormLogin
      */
     public FormLogin() {
         initComponents();
+    }
+
+    public JPasswordField getTxtPassword() {
+        return TxtPassword;
+    }
+
+    public JTextField getTxtUsername() {
+        return TxtUsername;
+    }
+
+    public JButton getBtnLogin() {
+        return btnLogin;
     }
 
     /**
@@ -30,17 +49,28 @@ public class FormLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         TxtUsername = new javax.swing.JTextField();
-        TextPassword = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        TxtPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Username");
 
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Password");
 
-        jButton1.setText("Login");
+        TxtUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+
+        TxtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -56,9 +86,9 @@ public class FormLogin extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(TxtUsername)
-                            .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(TxtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnLogin)
                         .addGap(81, 81, 81)))
                 .addContainerGap(327, Short.MAX_VALUE))
         );
@@ -72,10 +102,10 @@ public class FormLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(TextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                    .addComponent(TxtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(175, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,6 +128,24 @@ public class FormLogin extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(973, 512));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+        String sql = "SELECT * FROM user WHERE username=? AND password=?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, TxtUsername.getText());
+            ps.setString(2, String.valueOf(TxtPassword.getPassword()));
+            rs = ps.executeQuery();
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Success");
+            }else{
+                JOptionPane.showMessageDialog(null, "Failed");
+            }
+        }catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,9 +183,9 @@ public class FormLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TextPassword;
+    private javax.swing.JPasswordField TxtPassword;
     private javax.swing.JTextField TxtUsername;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
